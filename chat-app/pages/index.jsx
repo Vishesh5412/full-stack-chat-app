@@ -53,14 +53,14 @@ const Login = () => {
 
         <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6">
-            <div>
+            <div className="w-full">
               <label
                 htmlFor="email"
                 className="block text-sm/6 font-medium text-white  "
               >
                 Email address
               </label>
-              <div className="mt-2 relative">
+              <div className="mt-2 relative w-full">
                 <Input
                   type="email"
                   name="email"

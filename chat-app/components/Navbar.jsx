@@ -29,7 +29,7 @@ const Navbar = () => {
   return (
     <>
       {/* <div className="w-full flex h-[60px]  bg-[var(--dusty-bg)]  justify-between items-center "> */}
-      <div className="w-full flex  bg-[var(--dusty-bg)]  justify-between items-center py-3">
+      <div className="w-full flex  bg-[var(--dusty-bg)]  justify-between items-center py-3 sticky top-0">
       <div className="pl-[25px] text-3xl">
           <PiChatTextFill className="text-white" />
           <label></label>

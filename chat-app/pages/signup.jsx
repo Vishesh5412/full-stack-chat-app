@@ -46,8 +46,8 @@ const SignUp = () => {
   }
   return (
     <div className="min-h-screen w-screen  bg-[#151b23] pt-[70px] ">
-      <div className="flex flex-1 flex-col  px-6 justify-center items-center lg:px-8 ">
-        <div className={`sm:mx-auto sm:w-full sm:max-w-sm text-white text-center ${amaranth.className}`}>
+      <div className="flex  flex-col justify-center  px-6 py-10 lg:px-8 ">
+      <div className={`sm:mx-auto sm:w-full sm:max-w-sm text-white text-center ${amaranth.className}`}>
           <p className="text-[35px]/7">Welcome back to</p> <br />
           <p className="text-red-600 font-extrabold text-5xl/7 ">
             Whispr
