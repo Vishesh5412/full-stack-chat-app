@@ -4,8 +4,8 @@ let socket;
 
 export const getSocket = () => {
   if (!socket) {
-    socket = io({
-      path: "/api/socket", // Must match the server
+    socket = io("http://localhost:5000", {
+      transports: ["websocket"],
     });
   }
   return socket;

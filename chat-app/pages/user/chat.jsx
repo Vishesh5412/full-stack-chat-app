@@ -67,6 +67,7 @@ const ChatPage = ({ authUser }) => {
   useEffect(() => {
     setAuthUser(authUser);
   }, [authUser]);
+
   const roomId = useMemo(() => {
     if (!authId || !selectedUser?._id) return null;
     return [authId, selectedUser._id].sort().join("-");
@@ -77,10 +78,9 @@ const ChatPage = ({ authUser }) => {
     socket.emit("join-room", roomId);
   }, [roomId]);
 
-  //give line is listening for newMessage from the server
+  //given line is listening for newMessage from the server
   useEffect(() => {
     socket.on("newMessage", (message) => {
-      console.log("📩 Received:", message);
       setMessages(message);
     });
 

@@ -23,14 +23,14 @@ const ChatContainer = () => {
         </div>
       ) : (
         <div>
-          {messages?.map((message) => (
+          {messages?.map((message, idx) => (
             <div
               className={`text-white  flex flex-col py-2 gap-1 ${
                 message.senderId === selectedUser._id
                   ? "items-start"
                   : "items-end"
               }`}
-              key={message._id}
+              key={idx}
             >
               <div
                 className={`flex  gap-2 ${

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-
+import { getSocket } from "../lib/socket";
 const useChatStore = create((set, get) => ({
   isChatLoaded: false,
   globalMessages: [],
@@ -40,7 +40,15 @@ const useChatStore = create((set, get) => ({
         console.log("Unable to store message");
         return;
       }
+      const data = await response.json();
+      const { newMessage } = data;
+      const socket = getSocket();
+      const roomId = "global-room";
 
+      socket.emit("send-message", {
+        roomId,
+        message: newMessage,
+      });
     } catch (err) {
       console.log("Unable to store message", err);
     }

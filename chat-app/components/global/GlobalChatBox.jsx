@@ -28,7 +28,7 @@ const GlobalChatBox = () => {
           ) : (
             <>
               <Navbar />
-              <div className="overflow-scroll p-1 md:px-2 pb-[100px] w-full border-t border-gray-500">
+              <div className="overflow-scroll p-1 md:px-2 pb-[100px] w-full h-full">
                 {globalMessages.length === 0 ? (
                   <div className="h-full w-full text-white text-center content-center text-2xl">
                     No chat yet..

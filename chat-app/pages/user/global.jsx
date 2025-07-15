@@ -2,12 +2,13 @@ import React, { useEffect, useRef } from "react";
 import Navbar from "../../components/Navbar";
 import GlobalChatBox from "../../components/global/GlobalChatBox";
 import MessageInput from "../../components/MessageInput";
+
 import { getSocket } from "../../lib/socket";
 
 import useAuthStore from "../../store/useAuthStore";
 import useGlobalChatStore from "../../store/useGlobalChatStore";
 
-import connectToDatabase from '../../config/mongoose'
+import connectToDatabase from "../../config/mongoose";
 import jwt from "jsonwebtoken";
 import * as cookie from "cookie";
 import { notFound } from "next/navigation";
@@ -52,41 +53,42 @@ export async function getServerSideProps({ req }) {
 }
 
 const GlobalChat = ({ authUser }) => {
-    const bottomRef = useRef();
+  const bottomRef = useRef();
   const socket = getSocket();
 
-  const {  setAuthUser } = useAuthStore();
-  const { getMessages, globalMessages, setMessagesGlobally } = useGlobalChatStore();
+  const { setAuthUser } = useAuthStore();
+  const { getMessages, globalMessages, setMessagesGlobally } =
+    useGlobalChatStore();
 
   useEffect(() => {
     setAuthUser(authUser);
   }, [authUser]);
 
   useEffect(() => {
-   getMessages();
+    getMessages();
   }, []);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [globalMessages]);
-  
+
   const roomId = "global-room";
   useEffect(() => {
     socket.emit("join-room", roomId);
-  });
+  }, [roomId]);
 
-  //give line is listening for newMessage from the server
+  // //give line is listening for newMessage from the server
   useEffect(() => {
     socket.on("globalMessage", (message) => {
-      console.log("📩 Received:", message);
       setMessagesGlobally(message);
     });
 
     return () => socket.off("globalMessage");
   }, [roomId]);
+
   return (
     <div className="w-full h-screen bg-[var(--dusty-bg)]">
-        <GlobalChatBox  />
+      <GlobalChatBox />
     </div>
   );
 };

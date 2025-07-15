@@ -10,9 +10,6 @@ export default function SocketClient() {
   useEffect(() => {
     if (!authUser?._id) return;
 
-    // Initialize the server socket handler
-    fetch("/api/socket");
-
     const socket = getSocket();
 
     // Ensure socket is connected before emitting anything

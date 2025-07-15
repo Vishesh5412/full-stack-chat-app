@@ -50,10 +50,10 @@ handler.post(async (req, res) => {
       });
 
       // io.to(when use in server side) send message to all  clients in room
-      const roomId = [myId, userToChatId].sort().join("-");
-      if (res.socket.server.io) {
-        res.socket.server.io.to(roomId).emit("newMessage", newMessage);
-      }
+      // const roomId = [myId, userToChatId].sort().join("-");
+      // if (res.socket.server.io) {
+      //   res.socket.server.io.to(roomId).emit("newMessage", newMessage);
+      // }
 
       res.status(200).json({ message: "Success", newMessage });
     } catch (err) {

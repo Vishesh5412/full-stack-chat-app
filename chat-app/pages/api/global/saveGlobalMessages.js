@@ -54,10 +54,10 @@ handler.post(async (req, res) => {
       });
 
       // io.to(when use in server side) send message to all  clients in room
-      const roomId = "global-room";
-      if (res.socket.server.io) {
-        res.socket.server.io.to(roomId).emit("globalMessage", newMessage);
-      }
+      // const roomId = "global-room";
+      // if (res.socket.server.io) {
+      //   res.socket.server.io.to(roomId).emit("globalMessage", newMessage);
+      // }
 
       res.status(200).json({ message: "Success", newMessage });
     } catch (err) {

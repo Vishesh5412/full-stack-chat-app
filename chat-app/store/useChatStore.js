@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { create } from "zustand";
+import { getSocket } from "../lib/socket";
 
 const useChatStore = create((set, get) => ({
   users: [],
@@ -50,10 +51,22 @@ const useChatStore = create((set, get) => ({
         method: "POST",
         body: formData,
       });
+
       if (!response.ok) {
         console.log("Unable to store message");
         return;
       }
+
+      const data = await response.json();
+      let { newMessage } = data;
+      const socket = getSocket();
+      const { senderId, receiverId } = newMessage;
+      const roomId = [senderId, receiverId].sort().join("-");
+      socket.emit("send-message", {
+        roomId,
+        message: newMessage,
+      });
+      
     } catch (err) {
       console.log("Unable to store message", err);
     }
